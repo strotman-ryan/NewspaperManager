@@ -1,0 +1,10 @@
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "framework.html" %}
+
+{% block body %}
+{{super()}}
+{{wtf.quick_form(form)}}
+
+{% if address %} The {{name}}'s were added at {{address}} {% endif%}
+{% endblock %}
