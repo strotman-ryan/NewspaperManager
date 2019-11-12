@@ -1,8 +1,5 @@
 #Flask application for megan
 
-
-
-
 from flask import Flask
 
 application = app = Flask(__name__)
@@ -13,5 +10,5 @@ def index():
     return "<h1> Hello World for the second time </h1>"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug = True)
 
