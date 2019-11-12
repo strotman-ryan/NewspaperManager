@@ -10,13 +10,14 @@ import os
 
 application = app = Flask(__name__)
 bootstrap = Bootstrap(app)
-app.config['SECRET_KEY']  = "j;LJD:OSIFjFDFP(*Y(PSPA*Y))"
+app.config['SECRET_KEY']  = os.environ.get('MEGAN_NEWSPAPER_SECRET_KEY')
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+print(app.config)
 
 db = SQLAlchemy(app)
-print('sqlite:///' + os.path.join(basedir, 'DataBase.sqlite'))
+
 
 @app.route('/')
 def index():
@@ -39,6 +40,27 @@ class AddCustomer(FlaskForm):
     last_name = StringField("Family Name:", validators=[DataRequired()])
     address = StringField("Address:", validators=[DataRequired()])
     submit = SubmitField("Add")
+    
+    
+class Customer(db.Model):
+    __tablename__ = 'customers'
+    id = db.Column(db.Integer, primary_key = True)
+    family_name = db.Column(db.String(50), nullable = True)
+    address = db.Column(db.String(50), nullable = False)
+    payments = db.relationship('Payment', backref='role')
+    
+    def __repr__(self):
+        return '<Customer %r>' % self.address 
+    
+class Payment(db.Model):
+    __tablename__ = 'payments'
+    id = db.Column(db.Integer, primary_key = True)
+    date = db.Column(db.Date, nullable = False)
+    address_id = db.Column(db.Integer, db.ForeignKey('customers.id'), nullable = False)
+    
+    def __repr__(self):
+        return '<Payment %r>' % self.date
+
 
 if __name__ == '__main__':
     app.run(debug = True)
