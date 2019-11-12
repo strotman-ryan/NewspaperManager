@@ -11,3 +11,6 @@
 
 - to deploy zip requirements.txt and all .py files and upload to elastic beanstalk
 
+- need the application object to be defined before if __name__=="__main__":
+- need app.run() after that
+
