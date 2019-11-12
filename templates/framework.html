@@ -9,6 +9,9 @@
 <body>
 {% block body %}
     <h1> Megan's Newspaper Manager </h1>
+    {% for message in get_flashed_messages()%}
+    <div> {{message}} </div>
+    {% endfor %}
 {% endblock %}
 </body>
 </html>
