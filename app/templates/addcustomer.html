@@ -9,4 +9,8 @@
 {{wtf.quick_form(form)}}
 
 {% if address %} The {{name}}'s were added at {{address}} {% endif%}
+
+{% for customer in customers %}
+<div> {{customer}} </div>
+{% endfor %}
 {% endblock %}

@@ -1,5 +1,5 @@
 
-
+from . import db
 
 class Customer(db.Model):
     __tablename__ = 'customers'
@@ -19,3 +19,12 @@ class Payment(db.Model):
     
     def __repr__(self):
         return '<Payment %r>' % self.date
+    
+def addCustomer(family_name, address):
+    customer = Customer(family_name= family_name,address = address)
+    db.session.add(customer)
+    db.session.commit()
+
+
+def getallcustomers():
+    return Customer.query.all()

@@ -5,6 +5,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_wtf import FlaskForm
 from . import main
+from ..models import addCustomer, getallcustomers
 
 @main.route('/')
 def index():
@@ -17,10 +18,11 @@ def addcustomer():
         session["address"] = form.address.data
         flash("Good adding")
         session["last_name"] = form.last_name.data
+        addCustomer(form.last_name.data, form.address.data)
         form.address.data = None
         form.last_name.data = None
         return redirect(url_for('.addcustomer'))
-    return render_template('addcustomer.html',form = form, address = session.get("address"), name = session.get("last_name"))
+    return render_template('addcustomer.html',form = form, address = session.get("address"), name = session.get("last_name"), customers = getallcustomers())
 
 
 class AddCustomer(FlaskForm):
