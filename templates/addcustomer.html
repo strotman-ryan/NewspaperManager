@@ -4,6 +4,8 @@
 
 {% block body %}
 {{super()}}
+<h2> Add a customer </h2>
+
 {{wtf.quick_form(form)}}
 
 {% if address %} The {{name}}'s were added at {{address}} {% endif%}

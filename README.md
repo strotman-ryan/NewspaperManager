@@ -14,3 +14,12 @@
 - need the application object to be defined before if __name__=="__main__":
 - need app.run() after that
 
+
+
+- For data base connection to mysql through aws
+	- the connection string should go  mysql+pymysql://{username}:{endpoint (without the port number)}/{database name}
+	- NOTE: the data base has to all ready be created
+	- make sure you run "pip install pymysql"
+	- I made sure the security group had incoming IP address set to all (0.0.0.0.0)
+		- not sure if this is nesseccary
+
