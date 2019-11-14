@@ -1,0 +1,12 @@
+
+
+{% extends "framework.html" %}
+
+{% block body %}
+
+	<div> Customers </div>
+	{% for customer in customers %}
+		<div> {{customer.family_name}} at {{customer.address}}: <a href="{{url_for(link_str,id = customer.id)}}"> edit/delete </a>  </div>
+	{% endfor %}
+	<div> <a href="{{add_cust_link}}" > Add a Customer  </a></div>
+{% endblock %}

@@ -1,0 +1,11 @@
+
+
+{% extends "framework.html" %}
+
+{% block body %}
+	<div> Edit this customer </div>
+	{% if customer %}
+	<div> {{customer.family_name}} at {{customer.address}} </div>
+	{% endif %}
+
+{% endblock %}
